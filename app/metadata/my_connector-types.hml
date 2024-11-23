@@ -7,6 +7,14 @@ definition:
     typeName: Uuid
 
 ---
+kind: ScalarType
+version: v1
+definition:
+  name: CartItems
+  graphql:
+    typeName: CartItemsScalar
+
+---
 kind: BooleanExpressionType
 version: v1
 definition:
@@ -641,4 +649,3 @@ definition:
     enable: true
   graphql:
     selectTypeName: VectorAggExp
-

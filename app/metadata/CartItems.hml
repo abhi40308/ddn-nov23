@@ -117,7 +117,7 @@ definition:
 
 ---
 kind: Model
-version: v1
+version: v2
 definition:
   name: CartItems
   objectType: CartItems
@@ -126,25 +126,7 @@ definition:
     collection: cart_items
   filterExpressionType: CartItemsBoolExp
   aggregateExpression: CartItemsAggExp
-  orderableFields:
-    - fieldName: cartId
-      orderByDirections:
-        enableAll: true
-    - fieldName: createdAt
-      orderByDirections:
-        enableAll: true
-    - fieldName: id
-      orderByDirections:
-        enableAll: true
-    - fieldName: productId
-      orderByDirections:
-        enableAll: true
-    - fieldName: quantity
-      orderByDirections:
-        enableAll: true
-    - fieldName: updatedAt
-      orderByDirections:
-        enableAll: true
+  orderByExpression: CartItemsOrderBy
   graphql:
     selectMany:
       queryRootField: cartItems
@@ -156,7 +138,6 @@ definition:
           - id
         subscription:
           rootField: cartItemsById
-    orderByExpressionType: CartItemsOrderBy
     filterInputTypeName: CartItemsFilterInput
     aggregate:
       queryRootField: cartItemsAggregate
@@ -222,11 +203,24 @@ definition:
         - fieldName: cartId
           orderByExpression: UuidOrderBy
       orderableRelationships:
-        - relationshipName: cart
-          orderByExpression: UuidOrderBy
+        []
+        # - relationshipName: cart
+        #   orderByExpression: CartItemsOrderBy
   graphql:
     expressionTypeName: CartItemsOrderBy1
 
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: UuidOrderBy
+  operand:
+    scalar:
+      orderedType: Bool
+      enableOrderByDirections:
+        enableAll: true
+  graphql:
+    expressionTypeName: UuidOrderBy
 ---
 kind: OrderByExpression
 version: v1
@@ -238,4 +232,4 @@ definition:
       enableOrderByDirections:
         enableAll: true
   graphql:
-    expressionTypeName: UuidOrderBy
+    expressionTypeName: UuidOrderBy1
